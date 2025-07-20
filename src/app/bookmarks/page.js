@@ -7,6 +7,7 @@ import Modal from '@/components/Modal';
 
 export default function BookmarksPage() {
   const { bookmarks, removeBookmark } = useBookmarks();
+  
   const [showModal, setShowModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [actionType, setActionType] = useState('');
@@ -19,12 +20,11 @@ export default function BookmarksPage() {
 
   const handleAssignProject = (user) => {
     setSelectedUser(user);
-    setActionType('assign');
+    setActionType('assign'); 
     setShowModal(true);
   };
 
   const handleAction = () => {
-    // In a real app, this would trigger an API call
     if (actionType === 'promote') {
       alert(`${selectedUser.firstName} ${selectedUser.lastName} has been promoted!`);
     } else if (actionType === 'assign') {
@@ -34,50 +34,45 @@ export default function BookmarksPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Bookmarked Employees</h1>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-          Manage your bookmarked employees and take actions.
+    <div className="container mx-auto p-5 bg-gray-900 min-h-screen">
+      {/* Page Title and Description */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-blue-400 mb-3">
+          My Bookmarked Employees
+        </h1>
+        <p className="text-gray-300 text-lg">
+          Manage your favorite employees here
         </p>
       </div>
 
+      {/* Show a message if no employees are bookmarked */}
       {bookmarks.length === 0 ? (
-        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-10 text-center">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-            />
-          </svg>
-          <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-white">No bookmarks yet</h3>
-          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-            Start bookmarking employees from the dashboard to see them here.
+        <div className="bg-gray-800 rounded-lg shadow-lg p-8 text-center max-w-md mx-auto border border-gray-700">
+          <div className="text-6xl mb-4">📚</div>
+          <h3 className="text-xl font-bold mb-2 text-white">No Bookmarks Yet</h3>
+          <p className="text-gray-400">
+            Go to the dashboard to bookmark some employees
           </p>
         </div>
       ) : (
+        // Show the list of bookmarked employees
         <div>
-          <div className="mb-4 flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Bookmarked ({bookmarks.length})</h2>
+          <div className="flex flex-wrap justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-white">
+              Saved Employees ({bookmarks.length})
+            </h2>
             <button
               onClick={() => setShowModal(true)}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md"
             >
-              Assign to Project
+              Assign Project
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {/* Grid of employee cards */}
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {bookmarks.map((user) => (
-              <div key={user.id} className="relative">
+              <div key={user.id} className="bg-gray-800 rounded-lg shadow-lg p-4 hover:shadow-xl border border-gray-700">
                 <UserCard
                   user={user}
                   onBookmark={() => removeBookmark(user.id)}
@@ -86,9 +81,9 @@ export default function BookmarksPage() {
                 />
                 <button
                   onClick={() => handleAssignProject(user)}
-                  className="mt-2 w-full bg-purple-500 hover:bg-purple-600 text-white text-xs py-2 px-3 rounded-md text-center transition-colors"
+                  className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-2 rounded-md"
                 >
-                  Assign to Project
+                  Assign Project
                 </button>
               </div>
             ))}
@@ -96,31 +91,24 @@ export default function BookmarksPage() {
         </div>
       )}
 
-      {/* Modal for actions */}
+      {/* Popup window for actions */}
       <Modal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        title={actionType === 'promote' ? 'Promote Employee' : 'Assign to Project'}
+        title={actionType === 'promote' ? '🌟 Promote Employee' : '📋 Assign Project'}
       >
         {selectedUser && (
-          <div className="p-4">
-            <div className="mb-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {actionType === 'promote'
-                  ? `Are you sure you want to promote ${selectedUser.firstName} ${selectedUser.lastName}?`
-                  : `Assign ${selectedUser.firstName} ${selectedUser.lastName} to a project:`}
-              </p>
-            </div>
+          <div className="p-6 bg-gray-800 text-white">
+            <p className="text-lg mb-4">
+              {actionType === 'promote'
+                ? `Do you want to promote ${selectedUser.firstName} ${selectedUser.lastName}?`
+                : `Assign a project to ${selectedUser.firstName} ${selectedUser.lastName}`}
+            </p>
 
             {actionType === 'assign' && (
-              <div className="mb-4">
-                <label htmlFor="project" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Select Project
-                </label>
-                <select
-                  id="project"
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md dark:bg-gray-700 dark:text-white"
-                >
+              <div className="mb-6">
+                <label className="block text-gray-300 mb-2">Choose a Project:</label>
+                <select className="w-full p-2 border rounded-md bg-gray-700 text-white border-gray-600">
                   <option>Website Redesign</option>
                   <option>Mobile App Development</option>
                   <option>Data Migration</option>
@@ -130,18 +118,16 @@ export default function BookmarksPage() {
               </div>
             )}
 
-            <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+            <div className="flex gap-4">
               <button
-                type="button"
-                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:col-start-2 sm:text-sm"
                 onClick={handleAction}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md"
               >
                 Confirm
               </button>
               <button
-                type="button"
-                className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:col-start-1 sm:text-sm"
                 onClick={() => setShowModal(false)}
+                className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md border border-gray-600"
               >
                 Cancel
               </button>
