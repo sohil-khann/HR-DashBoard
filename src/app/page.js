@@ -29,7 +29,6 @@ export default function Home() {
   );
 }
 
-// This component will be client-side rendered
 const SearchBarWrapper = async () => {
   return <SearchBarClient />;
 };

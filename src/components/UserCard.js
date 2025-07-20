@@ -3,7 +3,7 @@ import Link from 'next/link';
 import RatingBar from './RatingBar';
 
 const UserCard = ({ user, onBookmark, onPromote, isBookmarked }) => {
-  // Generate a random department if not provided
+  
   const departments = ['Engineering', 'Marketing', 'HR', 'Finance', 'Operations', 'Sales', 'Product'];
   const department = user.company?.department || departments[Math.floor(Math.random() * departments.length)];
 
