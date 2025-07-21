@@ -1,9 +1,9 @@
-// API utility functions
+
 
 /**
  * Fetch users from the API
- * @param {number} limit - Number of users to fetch
- * @returns {Promise<Array>} - Array of user objects
+ * @param {number} limit 
+ * @returns {Promise<Array>} 
  */
 export const fetchUsers = async (limit = 20) => {
   try {
@@ -15,7 +15,6 @@ export const fetchUsers = async (limit = 20) => {
     
     const data = await response.json();
     
-    // Add random performance rating to each user
     return data.users.map(user => ({
       ...user,
       performance: Math.floor(Math.random() * 5) + 1

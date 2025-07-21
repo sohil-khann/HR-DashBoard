@@ -34,7 +34,7 @@ export default function BookmarksPage() {
   };
 
   return (
-    <div className="container mx-auto p-5 bg-gray-900 min-h-screen">
+    <div className="container mx-auto p-5 bg-gray-50 min-h-screen">
       {/* Page Title and Description */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-blue-400 mb-3">
@@ -47,7 +47,7 @@ export default function BookmarksPage() {
 
       {/* Show a message if no employees are bookmarked */}
       {bookmarks.length === 0 ? (
-        <div className="bg-gray-800 rounded-lg shadow-lg p-8 text-center max-w-md mx-auto border border-gray-700">
+        <div className="bg-gray-50 rounded-lg shadow-lg p-8 text-center max-w-md mx-auto border border-gray-700">
           <div className="text-6xl mb-4">📚</div>
           <h3 className="text-xl font-bold mb-2 text-white">No Bookmarks Yet</h3>
           <p className="text-gray-400">
