@@ -123,7 +123,16 @@ function AnalyticsPage() {
 
   if (error || !analyticsData) {
     return (
-      <div className="max-w-full mx-auto px-4 py-8 bg-zinc-700 min-h-screen">
+      <div className="max-w-full mx-auto px-4 py-8 bg-zinc-700 min-h-screen"
+      
+            style={{
+        boxShadow: '0 8px 12px 0 rgba(31, 38, 135, 0.2), 0 0.5px 3px 0 rgba(0,0,0,0.01)',
+        background: 'linear-gradient(135deg, #cfe0e6 0%, #ffffff 50%)',
+        border: '1px solid rgba(255,255,255,0.18)',
+        overflow: 'hidden',
+      }}
+      
+      >
         <h1 className="text-4xl font-bold mb-8 text-gray-800">Analytics Dashboard</h1>
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-sm">
           <div className="flex items-center">

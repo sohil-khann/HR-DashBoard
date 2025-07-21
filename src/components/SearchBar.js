@@ -2,7 +2,17 @@ import React from 'react';
 
 const SearchBar = ({ searchTerm, onSearchChange, departments, selectedDepartments, onDepartmentChange, ratings, selectedRatings, onRatingChange }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 sm:p-7 rounded-xl shadow-md mb-8 border border-gray-100 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 p-6 sm:p-7 rounded-xl shadow-md mb-8 border border-gray-100 dark:border-gray-700"
+    
+          style={{
+        boxShadow: '0 8px 12px 0 rgba(31, 38, 135, 0.2), 0 0.5px 3px 0 rgba(0,0,0,0.01)',
+        background: 'linear-gradient(135deg, #cfe0e6 0%, #ffffff 50%)',
+        border: '1px solid rgba(255,255,255,0.18)',
+        overflow: 'hidden',
+      }}
+    
+    
+    >
       <div className="mb-6">
         <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
           Search Employees

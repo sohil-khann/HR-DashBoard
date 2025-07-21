@@ -41,12 +41,6 @@ This dashboard is your partner in fostering a productive, engaged, and high-perf
 -   **Engagement Trends**: Monitor bookmarking trends to understand employee interest and engagement over time.
 -   **Top Performer Recognition**: Identify and highlight your organization's top-performing individuals.
 
-### ✨ User Experience & Accessibility
--   **Adaptive Interface**: Seamlessly switch between Dark and Light modes for optimal viewing comfort.
--   **Fully Responsive Design**: Access the dashboard from any device, ensuring a consistent experience on desktops, tablets, and mobile phones.
--   **Robust State Management**: Powered by custom hooks for efficient and reliable data handling.
--   **Clear Feedback**: Intuitive loading and error states keep you informed about the application's status.
-
 ## Tech Stack
 
 - **React** with Next.js App Router
@@ -54,7 +48,7 @@ This dashboard is your partner in fostering a productive, engaged, and high-perf
 - **JavaScript (ES6+)**
 - **Zustand** for state management
 - **Chart.js** and **react-chartjs-2** for analytics
-- **Framer Motion** for animations
+
 
 ## Getting Started
 
@@ -128,7 +122,7 @@ This setup allows for easy integration with real HR APIs in the future.
 
 ## Support & Contact
 
-For any questions, issues, or feature requests, please contact [Your Name/Team Name] at [Your Email Address or Support Link].
+For any questions, issues, or feature requests, please contact Sohil khan at sohilkhann164@gmail.com.
 
 Thank you for using the HR Dashboard!
 

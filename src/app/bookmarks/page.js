@@ -5,7 +5,7 @@ import UserCard from '@/components/UserCard';
 import useBookmarks from '@/hooks/useBookmarks';
 import Modal from '@/components/Modal';
 
-export default function BookmarksPage() {
+export default function bookmarksPage() {
   const { bookmarks, removeBookmark } = useBookmarks();
   
   const [showModal, setShowModal] = useState(false);
@@ -34,7 +34,15 @@ export default function BookmarksPage() {
   };
 
   return (
-    <div className="container mx-auto p-5 bg-gray-50 min-h-screen">
+    <div className="container mx-auto p-5 bg-gray-50 min-h-screen"
+    
+          style={{
+        boxShadow: '0 8px 12px 0 rgba(31, 38, 135, 0.2), 0 0.5px 3px 0 rgba(0,0,0,0.01)',
+        background: 'linear-gradient(135deg, #cfe0e6 0%, #ffffff 50%)',
+        border: '1px solid rgba(255,255,255,0.18)',
+        overflow: 'hidden',
+      }}
+    >
       {/* Page Title and Description */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-blue-400 mb-3">
@@ -47,7 +55,7 @@ export default function BookmarksPage() {
 
       {/* Show a message if no employees are bookmarked */}
       {bookmarks.length === 0 ? (
-        <div className="bg-gray-50 rounded-lg shadow-lg p-8 text-center max-w-md mx-auto border border-gray-700">
+        <div className="bg-gray-50 rounded-lg shadow-lg p-8 text-center max-w-md mx-auto border border-gray-200 dark:border-gray-700">
           <div className="text-6xl mb-4">📚</div>
           <h3 className="text-xl font-bold mb-2 text-white">No Bookmarks Yet</h3>
           <p className="text-gray-400">
@@ -72,7 +80,7 @@ export default function BookmarksPage() {
           {/* Grid of employee cards */}
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {bookmarks.map((user) => (
-              <div key={user.id} className="bg-gray-800 rounded-lg shadow-lg p-4 hover:shadow-xl border border-gray-700">
+              <div key={user.id} className="bg-white rounded-lg shadow-lg  hover:shadow-xl border border-gray-200">
                 <UserCard
                   user={user}
                   onBookmark={() => removeBookmark(user.id)}

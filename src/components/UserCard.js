@@ -13,7 +13,7 @@ const UserCard = ({ user, onBookmark, onPromote, isBookmarked }) => {
     for (let i = 0; i < str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
-    const color = `hsl(${hash % 360}, 70%, 60%)`;
+    const color = `hsl(${hash % 360}, 80%, 60%)`;
     return color;
   };
 
@@ -21,8 +21,8 @@ const UserCard = ({ user, onBookmark, onPromote, isBookmarked }) => {
     <div
       className="relative rounded-xl p-5 transition-all duration-500 group flex flex-col"
       style={{
-        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 1.5px 6px 0 rgba(0,0,0,0.08)',
-        background: 'linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%)',
+        boxShadow: '0 8px 12px 0 rgba(31, 38, 135, 0.2), 0 0.5px 3px 0 rgba(0,0,0,0.01)',
+        background: 'linear-gradient(135deg, #cfe0e6 0%, #ffffff 50%)',
         border: '1px solid rgba(255,255,255,0.18)',
         overflow: 'hidden',
       }}
