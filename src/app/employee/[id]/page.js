@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import RatingBar from '@/components/RatingBar';
 import Badge from '@/components/Badge';
 import TabsContainer from '@/components/TabsContainer';
@@ -365,7 +366,7 @@ export default function EmployeeDetailsPage() {
                 </div>
                 <div className="border-t border-gray-100 dark:border-gray-700 px-6 py-4 bg-gray-50 dark:bg-gray-800/50">
                   <p className="text-sm text-gray-700 dark:text-gray-300 italic">
-                    "{item.content}"
+                    &quot;{item.content}&quot;
                   </p>
                 </div>
               </div>
@@ -481,9 +482,11 @@ export default function EmployeeDetailsPage() {
           {/* Employee Basic Info */}
           <div className="flex items-center">
             <div className="relative">
-              <img
+              <Image
                 src={user.image || `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random`}
                 alt={`${user.firstName} ${user.lastName}`}
+                width={80}
+                height={80}
                 className="h-20 w-20 rounded-full mr-5 object-cover border-4 border-white dark:border-gray-700 shadow-md"
               />
               <div className="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-1 shadow-md">
