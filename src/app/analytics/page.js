@@ -111,7 +111,7 @@ function AnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 py-8 bg-zinc-700 min-h-screen">
         <h1 className="text-4xl font-bold mb-8 text-gray-800">Analytics Dashboard</h1>
         <div className="flex justify-center py-20">
           <div className="animate-spin h-12 w-12 border-4 border-blue-600 rounded-full border-t-transparent"></div>
@@ -122,7 +122,7 @@ function AnalyticsPage() {
 
   if (error || !analyticsData) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-50 min-h-screen">
+      <div className="max-w-full mx-auto px-4 py-8 bg-zinc-700 min-h-screen">
         <h1 className="text-4xl font-bold mb-8 text-gray-800">Analytics Dashboard</h1>
         <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-sm">
           <div className="flex items-center">

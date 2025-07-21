@@ -1,35 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+'use client';
+
 import UserCard from './UserCard';
-import { fetchUsers } from '@/lib/api';
 import useBookmarks from '@/hooks/useBookmarks';
-import useSearch from '@/hooks/useSearch';
 
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
+const UsersList = ({ users }) => {
   const { bookmarks, addBookmark, removeBookmark, isBookmarked } = useBookmarks();
-  const { filteredUsers, searchTerm, setSearchTerm, departments, selectedDepartments, toggleDepartment, ratings, selectedRatings, toggleRating } = useSearch(users);
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchUsers(20);
-        setUsers(data);
-      } catch (err) {
-        setError('Failed to load users. Please try again later.');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadUsers();
-  }, []);
 
   const handleBookmark = (user) => {
     if (isBookmarked(user.id)) {
@@ -44,36 +21,28 @@ const UsersList = () => {
     alert(`${user.firstName} ${user.lastName} has been promoted!`);
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded relative my-4">
-        <strong className="font-bold">Error!</strong>
-        <span className="block sm:inline"> {error}</span>
-      </div>
-    );
-  }
-
   return (
-    <div>
-      <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Employees ({filteredUsers.length})</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+      <div className="mb-8 flex justify-between items-center pb-4 border-b border-gray-100 dark:border-gray-700">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white flex items-center">
+          <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          Employees <span className="ml-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm">{users.length}</span>
+        </h2>
       </div>
 
-      {filteredUsers.length === 0 ? (
-        <div className="text-center py-10 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
-          <p className="text-gray-500 dark:text-gray-400">No employees found matching your criteria.</p>
+      {users.length === 0 ? (
+        <div className="text-center py-16 bg-gray-50 dark:bg-gray-700/30 rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center">
+          <svg className="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-gray-500 dark:text-gray-400 text-lg">No employees found matching your criteria.</p>
+          <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">Try adjusting your search or filters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredUsers.map((user) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+          {users.map((user) => (
             <UserCard
               key={user.id}
               user={user}
