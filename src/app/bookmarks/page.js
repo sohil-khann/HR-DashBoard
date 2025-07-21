@@ -5,7 +5,7 @@ import UserCard from '@/components/UserCard';
 import useBookmarks from '@/hooks/useBookmarks';
 import Modal from '@/components/Modal';
 
-export default function bookmarksPage() {
+export default function BookmarksPage() {
   const { bookmarks, removeBookmark } = useBookmarks();
   
   const [showModal, setShowModal] = useState(false);
